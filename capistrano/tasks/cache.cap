@@ -1,0 +1,10 @@
+namespace :cache do
+    desc 'Add permission for cache an log floder'
+    task :fix_file_permissions do
+      on roles(:web) do
+        #as :s do
+            execute :chmod, "-R 777 #{release_path}"
+        #end
+      end
+    end
+end

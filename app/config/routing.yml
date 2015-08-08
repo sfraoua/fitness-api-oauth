@@ -1,0 +1,25 @@
+import:
+    resource: routing_rest.yml
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+core:
+    resource: "@CoreBundle/Controller/"
+    type:     annotation
+    prefix:   /core
+
+o_auth:
+    resource: "@OAuthBundle/Controller/"
+    type:     annotation
+
+fos_user_bundle_routing:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /user
+
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

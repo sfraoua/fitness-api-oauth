@@ -1,0 +1,28 @@
+parameters:
+  symfony.form.class: Symfony\Component\Form\Form
+  oauth.client.handler.class: OAuthBundle\Form\Handler\ClientHandler
+  oauth.client.manager.class: OAuthBundle\Manager\ClientManager
+
+services:
+
+    oauth.client.form:
+          factory_service: form.factory
+          factory_method: createNamed
+          class: %symfony.form.class%
+          arguments:
+              - client
+              - oauth_client_type
+
+    oauth.client.form_type:
+        class: OAuthBundle\Form\Type\ClientType
+        tags:
+            - { name: form.type, alias: oauth_client_type}
+
+    oauth.client.form_handler:
+        class: %oauth.client.handler.class%
+        arguments: [@oauth.client.form, @request, @security.token_storage, @oauth.client.manager]
+        scope: request
+
+    oauth.client.manager:
+        class: %oauth.client.manager.class%
+        arguments: [@doctrine.odm.mongodb.document_manager]

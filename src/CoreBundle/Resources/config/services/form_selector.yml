@@ -1,0 +1,9 @@
+parameters:
+  core.text_to_array.type.class: CoreBundle\Form\Selector\TextToArraySelectorType
+
+services:
+
+  core.selector.text_to_array:
+      class: %core.text_to_array.type.class%
+      tags:
+        - { name: form.type, alias: text_to_array}

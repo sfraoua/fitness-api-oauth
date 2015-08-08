@@ -1,0 +1,11 @@
+#namespace :phpunit do
+#  desc 'Run PHPUnit'
+#  task :run do
+#    invoke 'symfony:run', :'doctrine:schema:update', '--env=test --force'
+#    on roles(:web) do
+#      within release_path do
+#        execute :php, release_path.join('bin/phpunit'), '-c app/'
+#      end
+#    end
+#  end
+#end

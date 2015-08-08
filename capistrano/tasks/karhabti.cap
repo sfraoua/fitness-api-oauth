@@ -1,0 +1,15 @@
+namespace :karhabti do
+  desc 'Install robots.txt'
+  task :robots do
+    on roles(:web) do
+      upload! "#{fetch(:upload_files_path)}robots_#{fetch(:stage)}.txt", "#{release_path}/web/robots.txt"
+    end
+  end
+    desc 'Force database update'
+      task :database do
+        on roles(:app) do
+          invoke 'symfony:console', :'doctrine:schema:update', '--force'
+        end
+      end
+end
+

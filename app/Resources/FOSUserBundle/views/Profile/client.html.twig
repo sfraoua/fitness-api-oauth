@@ -1,0 +1,53 @@
+{% extends "FOSUserBundle::user_dashoard.template.html.twig" %}
+{% block content %}
+    <div class="page-header">
+        <h1>Api Client</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            <h2><small>OAuth Access</small></h2>
+            <p>OAuth 2.0 permet aux utilisateurs de partager des données spécifiques avec vous (par exemple, des listes de contacts) tout en préservant la confidentialité de leur nom d'utilisateur, de leur mot de passe et d'autres informations.</p>
+            <button type="button" class="btn btn-info" id="show-oauth-panel">Créer un identifiant client</button>
+        </div>
+        <div class="col-sm-10">
+            {% if app.user.clients | length ==0 %}
+                Aucun client OAuth trouvé !
+            {% else %}
+                {% for client in app.user.clients %}
+                    <ul>
+                        <li><b>Client name :</b> {{ client.name }}</li>
+                        <li><b>Client id :</b> {{ client.id }}_{{ client.randomId }}</li>
+                        <li><b>Client secret :</b> {{ client.secret }}</li>
+                        <li><a href="{{ path('fos_oauth_server_authorize', {'response_type':'token', 'client_id': client.id ~ '_' ~ client.randomId, 'redirect_uri' : 'http://api.dev' }) }}">Tester</a></li>
+
+                    </ul>
+                {% endfor %}
+            {% endif %}
+            <div id="new-oauth-client" {% if form.vars.errors | length == 0 %} style="display: none" {% endif %}>
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="page-header col-sm-2">
+            <h2><small>Public Access</small></h2>
+            <p>L'utilisation de cette clé ne nécessite aucune action de l'utilisateur ni son consentement, ne donne pas accès aux informations du compte ni ne sert à des fins d'autorisation.</p>
+            <button type="button" class="btn btn-info">Créer une clé publique</button>
+        </div>
+        <div class="col-sm-10">
+        </div>
+    </div>
+    <script>
+
+        var oAuthClient = {
+            init : function(){
+                $('#show-oauth-panel').on('click', oAuthClient.showNewClientForm);
+            },
+            showNewClientForm : function () {
+                $('#new-oauth-client').show()
+            }
+        }
+        oAuthClient.init();
+    </script>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+{% block body%}
+<div class="row">
+    <div class="col-sm-3">
+
+        <div class="list-group">
+            <a href="#" class="list-group-item disabled">
+                User index
+            </a>
+            <a href="{{ path('user_profile_authentication_clients') }}" class="list-group-item">
+                API et authentification
+            </a>
+        </div>
+
+    </div>
+        <div class="col-sm-9">
+            {% block content %}
+            {% endblock content %}
+        </div>
+</div>
+{% endblock body%}

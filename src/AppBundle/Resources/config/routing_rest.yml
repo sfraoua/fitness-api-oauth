@@ -1,0 +1,5 @@
+muscles :
+  type: rest
+  resource:     "AppBundle:Api\MuscleRest"
+  prefix: muscle
+  name_prefix:  api_
