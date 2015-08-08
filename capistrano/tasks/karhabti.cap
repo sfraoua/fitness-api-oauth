@@ -1,4 +1,4 @@
-namespace :karhabti do
+namespace :workout do
   desc 'Install robots.txt'
   task :robots do
     on roles(:web) do
@@ -8,7 +8,7 @@ namespace :karhabti do
     desc 'Force database update'
       task :database do
         on roles(:app) do
-          invoke 'symfony:console', :'doctrine:schema:update', '--force'
+          #invoke 'symfony:console', :'doctrine:schema:update', '--force'
         end
       end
 end

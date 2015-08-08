@@ -1,5 +1,5 @@
-set :application, 'karhabti'
-set :repo_url, 'https://github.com/tannana86/workout.git'
+set :application, 'workout'
+set :repo_url, 'https://github.com/sfraoua/workout.git'
 
 set :ssh_user, 'tannana'
 server '212.129.20.99', user: fetch(:ssh_user), roles: %w{web app db}
@@ -65,7 +65,7 @@ set :use_set_permissions,   true
 
 
 after 'deploy:updated', 'bower:install'
-after 'deploy:updated', 'karhabti:database'
+after 'deploy:updated', 'workout:database'
 after 'deploy:finishing', 'app:copy_htaccess'
 after 'deploy:finishing', 'deploy:cleanup'
 after 'deploy:finishing', 'cache:fix_file_permissions'
