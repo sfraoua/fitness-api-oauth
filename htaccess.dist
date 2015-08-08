@@ -1,102 +1,12 @@
-DirectoryIndex app.php
-#cache and compression
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault A0
-    
-    # 1 YEAR - doesn't change often
-    <FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav|.ttf)$">
-    ExpiresDefault A31536000
-    </FilesMatch>
-
-    # 1 WEEK - possible to be changed, unlikely
-    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
-    ExpiresDefault A604800
-    </FilesMatch>
-
-    # 12 HOUR - core content, changes quickly
-    <FilesMatch "\.(txt|xml|js|css)$">
-    ExpiresDefault "access plus 43200 seconds"
-    </FilesMatch>
-
-</IfModule>
-
-<IfModule mod_headers.c>
-    # 1 YEAR
-    <FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav|.ttf)$">
-    Header set Cache-Control "max-age=31536000, public"
-    </FilesMatch>
-
-    # 1 WEEK
-    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
-    Header set Cache-Control "max-age=604800, public"
-    </FilesMatch>
-
-    # 12 HOURS
-    <FilesMatch "\.(txt|xml|js|css)$">
-    Header set Cache-Control "max-age=43200"
-    </FilesMatch>
-
-    # NEVER CACHE - notice the extra directives
-    <FilesMatch "\.(html|htm|php|cgi|pl)$">
-    Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
-    </FilesMatch>
-    
-</IfModule>
-
-Header unset ETag
-FileETag none
-
-
-# 1 WEEK for vendors
-# <DirectoryMatch "(components|plugins)$">
-#    <IfModule mod_headers.c>
-#        <FilesMatch "\.(txt|xml|js|css)$">
-#            Header set Cache-Control "max-age=604800, public"
-#        </FilesMatch>
-#    </IfModule>
-#    <IfModule mod_expires.c>
-#        <FilesMatch "\.(txt|xml|js|css)$">
-#                    ExpiresDefault A604800
-#        </FilesMatch>
-#    </IfModule>
-#</DirectoryMatch>
-
-# Disabling MultiViews prevents unwanted negotiation, e.g. "/app" should not resolve
-# to the front controller "/app.php" but be rewritten to "/app.php/app".
-<IfModule mod_negotiation.c>
-    Options -MultiViews
-</IfModule>
+SetEnvIfNoCase User-Agent "^libwww-perl*" block_bad_bots
+Deny from env=block_bad_bots
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    
+    RewriteCond %{HTTP_HOST} ^212\.129\.20\.99$
+    RewriteRule ^(.*)$ http://api.selimfraoua.com/$1 [L,R=301]
 
-   
-    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
-    RewriteRule ^(.*) - [E=BASE:%1]
-
-    # Sets the HTTP_AUTHORIZATION header removed by apache
-    RewriteCond %{HTTP:Authorization} .
-    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-    RewriteCond %{ENV:REDIRECT_STATUS} ^$
-    RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-
-    # If the requested filename exists, simply serve it.
-    # We only want to let Apache serve files and not directories.
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule .? - [L]
-
-    # Rewrite all other queries to the front controller.
-    RewriteRule .? %{ENV:BASE}/app.php [L]
-</IfModule>
-
-<IfModule !mod_rewrite.c>
-    <IfModule mod_alias.c>
-        # When mod_rewrite is not available, we instruct a temporary redirect of
-        # the start page to the front controller explicitly so that the website
-        # and the generated links can still be used.
-        RedirectMatch 302 ^/$ /app.php/
-        # RedirectTemp cannot be used instead
-    </IfModule>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ web/$1 [QSA,L]
 </IfModule>
