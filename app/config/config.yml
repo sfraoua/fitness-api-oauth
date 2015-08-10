@@ -55,6 +55,7 @@ doctrine_mongodb:
         default:
             server:  %database_host%
             options:
+                connect: true
                 db: %database_name%
                 username: %database_user%
                 password: %database_password%
