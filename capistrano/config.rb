@@ -66,6 +66,7 @@ set :use_set_permissions,   true
 
 after 'deploy:updated', 'bower:install'
 after 'deploy:updated', 'workout:database'
+after 'workout:database', 'cache:fix_file_permissions'
 after 'deploy:finishing', 'app:copy_htaccess'
 after 'deploy:finishing', 'deploy:cleanup'
-after 'deploy:finishing', 'cache:fix_file_permissions'
+after 'deploy:cleanup', 'cache:create_cache_folder'

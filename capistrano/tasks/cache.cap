@@ -1,10 +1,19 @@
 namespace :cache do
-    desc 'Add permission for cache an log floder'
+    desc 'Add permission for cache an log folder'
     task :fix_file_permissions do
       on roles(:web) do
         #as :s do
-            execute :chmod, "-R 777 #{release_path}"
+            execute :chmod, "777 -R #{release_path}"
         #end
       end
     end
+    task :create_cache_folder do
+      on roles(:web) do
+        #as :s do
+            #execute :mkdir, "/var/www/vhosts/sd-72073.dedibox.fr/api.selimfraoua.com/current/app/cache/prod"
+            execute :chmod, "777 -R /var/www/vhosts/sd-72073.dedibox.fr/api.selimfraoua.com/current/app/cache/prod"
+        #end
+      end
+    end
+
 end
