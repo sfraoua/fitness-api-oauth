@@ -64,6 +64,7 @@ set :use_set_permissions,   true
 
 
 
+after 'deploy:updated', 'cache:fix_file_permissions'
 after 'deploy:updated', 'bower:install'
 after 'deploy:updated', 'workout:database'
 after 'workout:database', 'cache:fix_file_permissions'

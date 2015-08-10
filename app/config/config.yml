@@ -53,7 +53,7 @@ assetic:
 doctrine_mongodb:
     connections:
         default:
-            server: mongodb:
+            server: "%database_host%":
             options:
                 username: "%database_user%"
                 password: "%database_password%"
