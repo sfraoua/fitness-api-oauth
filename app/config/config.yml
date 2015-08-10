@@ -54,10 +54,7 @@ doctrine_mongodb:
     connections:
         default:
             server:  %database_host%
-            options:
-                db: %database_name%
-                username: %database_user%
-                password: %database_password%
+            options: {}
     default_database: "%database_name%"
     document_managers:
         default:
