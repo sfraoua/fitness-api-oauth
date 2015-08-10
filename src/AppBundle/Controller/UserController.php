@@ -20,7 +20,7 @@ class UserController extends Controller
         if($clientHandler->createNew()){
             return $this->redirectToRoute('user_profile_authentication_clients');
         }
-        $client = $this->get('oauth.client.manager')->getOneBy(array('name'=>'workout'));
+        $client = $this->get('oauth.client.manager')->getOneBy(array('name'=>'fitness'));
 
         return $this->render('FOSUserBundle:Profile:client.html.twig', array('form'=>$clientHandler->getForm()->createView(),
             'client'=>$client));
