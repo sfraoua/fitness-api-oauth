@@ -31,7 +31,6 @@ class ClientHandler implements HandlerInterface
     public function createNew()
     {
         $client = new Client();
-        $client->setUser($this->token->getToken()->getUser());
         $this->form->setData($client);
         $this->form->handleRequest($this->request);
 

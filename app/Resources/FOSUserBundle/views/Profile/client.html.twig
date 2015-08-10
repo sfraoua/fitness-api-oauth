@@ -10,18 +10,17 @@
             <button type="button" class="btn btn-info" id="show-oauth-panel">Créer un identifiant client</button>
         </div>
         <div class="col-sm-10">
-            {% if app.user.clients | length ==0 %}
+            {% if client is null %}
                 Aucun client OAuth trouvé !
             {% else %}
-                {% for client in app.user.clients %}
                     <ul>
                         <li><b>Client name :</b> {{ client.name }}</li>
                         <li><b>Client id :</b> {{ client.id }}_{{ client.randomId }}</li>
                         <li><b>Client secret :</b> {{ client.secret }}</li>
                         <li><a href="{{ path('fos_oauth_server_authorize', {'response_type':'token', 'client_id': client.id ~ '_' ~ client.randomId, 'redirect_uri' : 'http://api.dev' }) }}">Tester</a></li>
+                        <li><a href="{{ path('fos_oauth_server_token', {'facebook_token' :'', 'grant_type':'http://workout.dev/grants/android_app', 'client_id': client.id ~ '_' ~ client.randomId, 'client_secret': client.secret, 'username': 'test', 'email': 'test@gmail.com', 'password':'loulou' }) }}">Tester</a></li>
 
                     </ul>
-                {% endfor %}
             {% endif %}
             <div id="new-oauth-client" {% if form.vars.errors | length == 0 %} style="display: none" {% endif %}>
                 {{ form(form) }}

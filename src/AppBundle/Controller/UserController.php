@@ -16,10 +16,13 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $client = $this->get('oauth.client.form_handler');
-        if($client->createNew()){
+        $clientHandler = $this->get('oauth.client.form_handler');
+        if($clientHandler->createNew()){
             return $this->redirectToRoute('user_profile_authentication_clients');
         }
-        return $this->render('FOSUserBundle:Profile:client.html.twig', array('form'=>$client->getForm()->createView()));
+        $client = $this->get('oauth.client.manager')->getOneBy(array('name'=>'workout'));
+
+        return $this->render('FOSUserBundle:Profile:client.html.twig', array('form'=>$clientHandler->getForm()->createView(),
+            'client'=>$client));
     }
 }

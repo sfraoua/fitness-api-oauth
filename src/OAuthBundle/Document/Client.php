@@ -16,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Client extends BaseClient
 {
+    const GRANT_TYPE_ANDROID_APP  = 'http://workout.dev/grants/android_app';
+
     /**
      * @MongoDB\Id
      */
@@ -33,18 +35,12 @@ class Client extends BaseClient
      */
     protected $allowedOrigins = array();
 
-    /**
-     * @Assert\NotBlank(message="Impossible d'associer un utilisateur au client !")
-     *
-     * @MongoDB\ReferenceOne(targetDocument="AppBundle\Document\User")
-     */
-    protected $user;
-
     public function __construct(){
         parent::__construct();
         $this->allowedGrantTypes = array(
             OAuth2::GRANT_TYPE_AUTH_CODE,
             OAuth2::GRANT_TYPE_IMPLICIT,
+            Client::GRANT_TYPE_ANDROID_APP,
         );
     }
 
@@ -80,14 +76,6 @@ class Client extends BaseClient
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
     }
 
     /**

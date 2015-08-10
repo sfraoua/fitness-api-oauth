@@ -39,6 +39,10 @@ abstract class BaseManager implements ManagerInterface
     {
         return $this->repository->findBy($criteria);
     }
+    public function getOneBy(array $criteria)
+    {
+        return $this->repository->findOneBy($criteria);
+    }
 
 
 }

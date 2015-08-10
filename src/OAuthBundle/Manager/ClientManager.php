@@ -19,4 +19,5 @@ class ClientManager extends BaseManager
         $this->repository = $om->getRepository('OAuthBundle:Client');
     }
 
+
 }

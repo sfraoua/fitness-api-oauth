@@ -17,10 +17,51 @@ class User extends BaseUser
      */
     protected $id;
 
+
     /**
-     * @MongoDB\ReferenceMany(targetDocument="OAuthBundle\Document\Client", cascade="all")
+     * @MongoDB\String()
      */
-    protected $clients;
+    protected $firstName;
+
+    /**
+     * @MongoDB\String()
+     */
+    protected $lastName;
+
+    /**
+     * @MongoDB\String()
+     */
+    protected $gender;
+
+    /**
+     * @MongoDB\String()
+     */
+    protected $hometown;
+
+    /**
+     * @MongoDB\Date()
+     */
+    protected $birthday;
+
+    /**
+     * @MongoDB\String()
+     */
+    protected $facebookId;
+
+    /**
+     * @MongoDB\String()
+     */
+    protected $locale;
+
+    /**
+     * @MongoDB\Boolean()
+     */
+    protected $autoPassword;
+    /**
+     * @MongoDB\Boolean()
+     */
+    protected $autoUsername;
+
 
     /**
      * @MongoDB\ReferenceMany(targetDocument="TrainingPlan", cascade="all")
@@ -29,7 +70,9 @@ class User extends BaseUser
 
     public function __construct(){
         parent::__construct();
-        $this->clients = new ArrayCollection();
+        $this->addRole('ROLE_USER');
+        $this->autoPassword = false;
+        $this->autoUsername = false;
     }
 
     /**
@@ -45,28 +88,147 @@ class User extends BaseUser
     /**
      * @return mixed
      */
-    public function getClients()
+    public function getAutoPassword()
     {
-        return $this->clients;
+        return $this->autoPassword;
     }
 
     /**
-     * Add client
-     *
-     * @param Client $client
+     * @param mixed $autoPassword
      */
-    public function addClient(Client $client)
+    public function setAutoPassword($autoPassword)
     {
-        $this->clients[] = $client;
+        $this->autoPassword = $autoPassword;
     }
 
     /**
-     * Remove client
-     *
-     * @param Client $client
+     * @return mixed
      */
-    public function removeClient(Client $client)
+    public function getFirstName()
     {
-        $this->clients->removeElement($client);
+        return $this->firstName;
     }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param mixed $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param mixed $locale
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAutoUsername()
+    {
+        return $this->autoUsername;
+    }
+
+    /**
+     * @param mixed $autoUsername
+     */
+    public function setAutoUsername($autoUsername)
+    {
+        $this->autoUsername = $autoUsername;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param mixed $birthday
+     */
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHometown()
+    {
+        return $this->hometown;
+    }
+
+    /**
+     * @param mixed $hometown
+     */
+    public function setHometown($hometown)
+    {
+        $this->hometown = $hometown;
+    }
+
+
+
 }

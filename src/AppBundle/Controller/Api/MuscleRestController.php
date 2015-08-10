@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Api;
 
 use AppBundle\Document\Muscle;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
@@ -18,7 +19,6 @@ use Symfony\Component\Security\Acl\Exception\Exception;
 class MuscleRestController extends FOSRestController
 {
     /**
-     * @Post
      * @RequestParam(name="nameFr", nullable=true, strict=true, description="Name French.")
      * @RequestParam(name="nameEn", nullable=true, strict=true, description="Name English.")
      * @RequestParam(name="nameSp", nullable=true, strict=true, description="Name Spanish.")
