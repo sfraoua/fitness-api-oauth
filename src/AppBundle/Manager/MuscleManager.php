@@ -17,4 +17,6 @@ class MuscleManager extends BaseManager
         parent::__construct($om);
         $this->repository = $om->getRepository('AppBundle:Muscle');
     }
+
+
 }

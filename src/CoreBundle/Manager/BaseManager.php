@@ -44,5 +44,10 @@ abstract class BaseManager implements ManagerInterface
         return $this->repository->findOneBy($criteria);
     }
 
+    public function delete($muscle)
+    {
+        $this->om->remove($muscle);
+        $this->om->flush();
+    }
 
 }

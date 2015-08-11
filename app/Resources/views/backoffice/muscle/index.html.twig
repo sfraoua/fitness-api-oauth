@@ -11,7 +11,7 @@
                 <ul>
 
                 {% for muscle in muscles %}
-                    <li>{{ muscle.nameEn }} | {{ muscle.nameFr }}</li>
+                    <li>{{ muscle.nameEn }} | {{ muscle.nameFr }} <a href="{{ path('back_muscle_delete', {'id':muscle.id}) }}"><i class="glyphicon glyphicon-trash"></i> </a> </li>
                 {% endfor %}
                 </ul>
             </div>
