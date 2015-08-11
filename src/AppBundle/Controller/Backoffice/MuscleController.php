@@ -28,7 +28,7 @@ class MuscleController extends Controller
     {
         $muscleHandler = $this->get('handler.muscle');
         if($muscleHandler->createNew()){
-            return $this->redirectToRoute('user_profile_authentication_clients');
+            return $this->redirectToRoute('back_muscle_index');
         }
 
         return $this->render('backoffice/muscle/add.html.twig', array('form'=>$muscleHandler->getForm()->createView()));
