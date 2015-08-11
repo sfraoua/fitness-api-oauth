@@ -19,6 +19,7 @@ use Symfony\Component\Security\Acl\Exception\Exception;
 class MuscleRestController extends FOSRestController
 {
     /**
+     * @ToDo = "create add method"
      * @RequestParam(name="nameFr", nullable=true, strict=true, description="Name French.")
      * @RequestParam(name="nameEn", nullable=true, strict=true, description="Name English.")
      * @RequestParam(name="nameSp", nullable=true, strict=true, description="Name Spanish.")
@@ -37,7 +38,7 @@ class MuscleRestController extends FOSRestController
      * @return \Symfony\Component\Form\FormInterface
      */
 
-    public function allAction(ParamFetcher $paramFetcher)
+    public function addAction(ParamFetcher $paramFetcher)
     {
           //$data = ['name'=>$paramFetcher->get('name')];
 
@@ -53,6 +54,13 @@ class MuscleRestController extends FOSRestController
         $dm->persist($muscle);
         $dm->flush();
         return $muscle;
+
+    }
+
+    public function allAction()
+    {
+        $muscles = $this->get('manager.muscle')->getAll();
+        return $muscles;
 
     }
 }
