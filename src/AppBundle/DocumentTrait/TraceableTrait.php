@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 trait TraceableTrait
 {
     /**
-     * @MongoDB\ReferenceOne(targetDocument="AppBundle:User", cascade="persist")
+     * @MongoDB\ReferenceOne(targetDocument="AppBundle\Document\User", cascade="persist")
      */
     private $user;
 

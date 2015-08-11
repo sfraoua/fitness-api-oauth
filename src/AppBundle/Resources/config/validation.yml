@@ -1,0 +1,7 @@
+AppBundle\Document\Muscle:
+    constraints:
+        - Doctrine\Bundle\MongoDBBundle\Validator\Constraints\Unique:
+            fields: [nameFr, nameEn]
+            message: muscle.already.in.db
+
+    properties:
