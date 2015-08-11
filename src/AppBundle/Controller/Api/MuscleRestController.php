@@ -40,14 +40,6 @@ class MuscleRestController extends FOSRestController
 
     public function addAction(ParamFetcher $paramFetcher)
     {
-          //$data = ['name'=>$paramFetcher->get('name')];
-
-
-//        $formHandler = $this->get('oauth.client.form_handler');
-//            $formHandler->getForm()->submit($data);
-//        if(!$formHandler->createNew()){
-//        }
-
         $muscle = new Muscle();
         $muscle->setNameFr('Muscle 1');
         $dm = $this->get('doctrine_mongodb')->getManager();
