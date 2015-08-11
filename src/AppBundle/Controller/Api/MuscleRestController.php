@@ -19,7 +19,7 @@ use Symfony\Component\Security\Acl\Exception\Exception;
 class MuscleRestController extends FOSRestController
 {
     /**
-     * @ToDo = "create add method"
+     * ToDo = "create add method"
      * @RequestParam(name="nameFr", nullable=true, strict=true, description="Name French.")
      * @RequestParam(name="nameEn", nullable=true, strict=true, description="Name English.")
      * @RequestParam(name="nameSp", nullable=true, strict=true, description="Name Spanish.")
