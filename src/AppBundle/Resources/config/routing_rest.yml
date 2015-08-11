@@ -3,3 +3,8 @@ muscles :
   resource:     "AppBundle:Api\MuscleRest"
   prefix: muscle
   name_prefix:  api_
+users :
+  type: rest
+  resource:     "AppBundle:Api\UserRest"
+  prefix: user
+  name_prefix:  api_

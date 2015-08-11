@@ -4,46 +4,64 @@ namespace AppBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use FOS\UserBundle\Model\User as BaseUser;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
 use OAuthBundle\Document\Client;
 
 
 /**
  * @MongoDB\Document
+ * @ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
     /**
      * @MongoDB\Id
+     * @Expose
+     * @Groups({"me"})
      */
     protected $id;
 
 
     /**
      * @MongoDB\String()
+     * @Expose
+     * @Groups({"me"})
      */
     protected $firstName;
 
     /**
      * @MongoDB\String()
+     * @Expose
+     * @Groups({"me"})
      */
     protected $lastName;
 
     /**
+     * @Expose
+     * @Groups({"me"})
      * @MongoDB\String()
      */
     protected $gender;
 
     /**
+     * @Expose
+     * @Groups({"me"})
      * @MongoDB\String()
      */
     protected $hometown;
 
     /**
+     * @Expose
+     * @Groups({"me"})
      * @MongoDB\Date()
      */
     protected $birthday;
 
     /**
+     * @Expose
+     * @Groups({"me"})
      * @MongoDB\String()
      */
     protected $facebookId;

@@ -75,9 +75,11 @@ class AndroidGrantExtension implements GrantExtensionInterface
             throw new OAuth2ServerException(OAuth2::HTTP_BAD_REQUEST, OAuth2::ERROR_INVALID_REQUEST, 'Facebook OAuth access token don\'t match facebook_id');
         }
 
-        $user = $this->repository->findOneBy(array('email' => $inputData['email']));
+        $user = $this->repository->findOneBy(array('facebookId' => $me->id));
         if($user === null){
+
             $user = new User();
+            $user->setFacebookId($me->id);
             $user->setFirstName($me->first_name);
             $user->setLastName($me->last_name);
             $user->setGender($me->gender);

@@ -100,3 +100,10 @@ fos_rest:
     routing_loader:
         default_format: json
 #    disable_csrf_role: ROLE_API
+
+jms_serializer:
+    metadata:
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/serializer/FOSUserBundle"
