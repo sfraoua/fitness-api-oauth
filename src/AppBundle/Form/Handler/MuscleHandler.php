@@ -47,10 +47,8 @@ class MuscleHandler implements HandlerInterface
 
     protected function createNewSuccess()
     {
-        $client = $this->form->getData();
-        $user = $client->getUser();
-        $user->addClient($client);
-        $this->manager->doFlush($user);
+        $muscle = $this->form->getData();
+        $this->manager->doFlush($muscle);
     }
 
     /**
