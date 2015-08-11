@@ -1,0 +1,20 @@
+{% extends "backoffice/backoffice.template.html.twig" %}
+{% block content %}
+    <div class="page-header">
+        <h1>Muscles</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
+            </div>
+        <div class="col-sm-10">
+            <div>
+                <ul>
+
+                {% for muscle in muscles %}
+                    <li>{{ muscle.nameEn }} | {{ muscle.nameFr }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

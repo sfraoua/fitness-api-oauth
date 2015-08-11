@@ -10,6 +10,11 @@ core:
     type:     annotation
     prefix:   /core
 
+back:
+    resource: "@AppBundle/Controller/Backoffice"
+    type:     annotation
+    prefix:   /backoffice
+
 o_auth:
     resource: "@OAuthBundle/Controller/"
     type:     annotation

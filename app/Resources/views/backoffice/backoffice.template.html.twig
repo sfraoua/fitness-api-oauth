@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+{% block body%}
+<div class="row">
+    <div class="col-sm-3">
+
+        <div class="list-group">
+            <a href="{{ path('back_muscle_index') }}" class="list-group-item">
+               Muscles
+            </a>
+            <a href="{{ path('back_muscle_add') }}" class="list-group-item">
+               Add muscle
+            </a>
+        </div>
+
+    </div>
+        <div class="col-sm-9">
+            {% block content %}
+            {% endblock content %}
+        </div>
+</div>
+{% endblock body%}

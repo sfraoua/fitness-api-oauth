@@ -4,9 +4,10 @@
  * @author Selim Fraoua <sfraoua@gmail.com>
  */
 
-namespace OAuthBundle\Form\Handler;
+namespace AppBundle\Form\Handler;
 
 
+use AppBundle\Document\Muscle;
 use CoreBundle\Form\Handler\HandlerInterface;
 use CoreBundle\Manager\ManagerInterface;
 use OAuthBundle\Document\Client;
@@ -30,7 +31,7 @@ class MuscleHandler implements HandlerInterface
 
     public function createNew()
     {
-        $client = new Client();
+        $client = new Muscle();
         $client->setUser($this->token->getToken()->getUser());
         $this->form->setData($client);
         $this->form->handleRequest($this->request);

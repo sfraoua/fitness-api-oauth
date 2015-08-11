@@ -13,3 +13,21 @@ services:
     manager.muscle:
         class: %manager.muscle.class%
         arguments: [@doctrine.odm.mongodb.document_manager]
+
+    form.muscle:
+              factory_service: form.factory
+              factory_method: createNamed
+              class: %symfony.form.class%
+              arguments:
+                  - muscle
+                  - muscle_type
+
+    muscle.form_type:
+        class: AppBundle\Form\Type\MuscleType
+        tags:
+            - { name: form.type, alias: muscle_type}
+
+    handler.muscle:
+        class: AppBundle\Form\Handler\MuscleHandler
+        arguments: [@form.muscle, @request, @security.token_storage, @manager.muscle]
+        scope: request

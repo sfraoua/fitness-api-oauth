@@ -1,5 +1,5 @@
 <?php
-namespace Appundle\Form\Type;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +29,7 @@ class MuscleType extends AbstractType
             ->add('descriptionRu')
             ->add('descriptionCh')
             ->add('descriptionIt')
+            ->add('Save', 'submit')
         ;
     }
 
